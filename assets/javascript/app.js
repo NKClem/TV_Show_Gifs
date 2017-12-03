@@ -1,23 +1,23 @@
 //array for buttons
-var topics = ['happy', 'sad', 'angry', 'joyful', 'annoyed', 'frustrated', 'excited', 'sleepy', 'crazy', 'depressed', 'silly', 'bored', 'brave', 'proud', 'foolish', 'lame', 'cheerful'];
+var topics = ['blackish', 'game of thrones', 'the walking dead', 'american housewife', 'will & grace', 'the voice'];
 
 renderButtons();
 
-$('#add-feeling').click(function() {
+$('#add-show').click(function() {
 	event.preventDefault();
-	var newFeeling = $('#new-feeling').val().trim();
-	topics.push(newFeeling);
+	var newShow = $('#new-show').val().trim();
+	topics.push(newShow);
 	console.log(topics);
 	renderButtons();
 })
 
 function renderButtons() {
 	$('#buttons').empty();
-	topics.forEach(function(feeling) {
+	topics.forEach(function(show) {
 		var newButton = $('<button>');
 		newButton.addClass('style-buttons');
-		newButton.attr('data-name', feeling);
-		newButton.text(feeling);
+		newButton.attr('data-name', show);
+		newButton.text(show);
 		$('#buttons').append(newButton);
 	})
 }
