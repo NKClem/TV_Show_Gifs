@@ -2,6 +2,9 @@ body {
 	background-color: #c0d6e4;
 }
 
+.row {
+	margin-bottom: 40px;
+}
 #new-feeling {
 	width: 450px;
 }

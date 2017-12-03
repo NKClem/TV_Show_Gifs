@@ -3,6 +3,14 @@ var topics = ['happy', 'sad', 'angry', 'joyful', 'annoyed', 'frustrated', 'excit
 
 renderButtons();
 
+$('#add-feeling').click(function() {
+	event.preventDefault();
+	var newFeeling = $('#new-feeling').val().trim();
+	topics.push(newFeeling);
+	console.log(topics);
+	renderButtons();
+})
+
 function renderButtons() {
 	$('#buttons').empty();
 	topics.forEach(function(feeling) {
@@ -13,11 +21,3 @@ function renderButtons() {
 		$('#buttons').append(newButton);
 	})
 }
-
-$('#add-feeling').click(function() {
-	event.preventDefault();
-	var newFeeling = $('#new-feeling').val().trim();
-	topics.push(newFeeling);
-	console.log(topics);
-	renderButtons();
-})
