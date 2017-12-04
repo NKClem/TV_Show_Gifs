@@ -16,21 +16,24 @@ $('.style-buttons').click(function() {
 			console.log(response);
 			var results = response.data;
 			for(i = 0; i < results.length; i++) {
-				var displayGifDiv = $("<div class='image-spacing'>");
+				var displayGifDiv = $('<div>');
+				
 				var gifRating = results[i].rating;
-				var gifRatingString = JSON.stringify(gifRating);
-				var displayGifRating = $('<p>').text('Rating: ' + gifRatingString);
+				
+				var displayGifRating = $('<p>').text('Rating: ' + gifRating);
 				var displayGif = $('<img>');
 				displayGif.attr('src', results[i].images.fixed_height.url);
-				displayGifDiv.prepend(displayGifRating);
-            	displayGifDiv.prepend(displayGif);
-            	$('#images-dump').prepend(displayGif);
+				displayGif.addClass('image-spacing');
+				displayGifDiv.append(displayGifRating);
+            	displayGifDiv.append(displayGif);
+            	$('#images-dump').append(displayGif);
 			}
 		});
 
 })
 
-
+//click function to pause and restart gifs
+$('#')
 
 
 
@@ -51,6 +54,10 @@ function renderButtons() {
 		newButton.text(show);
 		$('#buttons').append(newButton);
 	})
+}
+
+function setUpGifs() {
+	
 }
 
 //$('.style-buttons').click(function(event) {
