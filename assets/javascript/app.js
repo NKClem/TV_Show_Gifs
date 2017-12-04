@@ -13,6 +13,18 @@ $('.style-buttons').click(function() {
 		method: 'GET'
 	}).done(function(response) {
 			console.log(response);
+			var results = response.data;
+			for(i = 0; i < results.length; i++) {
+				var displayGifDiv = $("<div class='item'>");
+				var gifRating = results[i].rating;
+				var gifRatingString = JSON.stringify(gifRating);
+				var displayGifRating = $('<p>').text('Rating: ' + gifRatingString);
+				var displayGif = $('<img>');
+				displayGif.attr('src', results[i].images.fixed_height.url);
+				displayGifDiv.prepend(displayGifRating);
+            	displayGifDiv.prepend(displayGif);
+            	$('#images-dump').prepend(displayGif);
+			}
 		});
 
 })
