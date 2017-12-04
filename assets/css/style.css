@@ -1,5 +1,16 @@
 body {
+	background: url("../images/background.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
 	background-color: #c0d6e4;
+	color: white;
+	font-size: 15px;
+}
+
+label {
+	font-size: 18px;
 }
 
 .row {
@@ -15,4 +26,10 @@ body {
 	border-radius: 10px;
 	background-color: #fa8072;
 	color: white;
+}
+
+#add-show {
+	background-color: #fa8072;
+	color: white;
+	border-radius: 5px;
 }

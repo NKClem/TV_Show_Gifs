@@ -1,7 +1,25 @@
 //array for buttons
-var topics = ["blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "quantico", "vikings", "the last ship", "monk", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
+var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "quantico", "vikings", "the last ship", "monk", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
 
 renderButtons();
+
+//call to giphy api
+$('.style-buttons').click(function() {
+	var userShow = $(this).attr('data-name');
+	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + userShow + '&api_key=oHeKCwJy4CsvUSGURAcAm8aGNCZiUGEj&limit=10';
+
+	$.ajax({
+		url: queryURL,
+		method: 'GET'
+	}).done(function(response) {
+			console.log(response);
+		});
+
+})
+
+
+
+
 
 $('#add-show').click(function() {
 	event.preventDefault();
@@ -21,3 +39,8 @@ function renderButtons() {
 		$('#buttons').append(newButton);
 	})
 }
+
+//$('.style-buttons').click(function(event) {
+//	event.preventDefault();
+//	var show = 
+//})
