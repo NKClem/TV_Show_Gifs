@@ -1,5 +1,5 @@
 //array for buttons
-var topics = ['blackish', 'game of thrones', 'the walking dead', 'american housewife', 'will & grace', 'the voice', 'the gifted', 'designated survivor', 'quantico', 'vikings', 'the last ship', 'monk', 'how i met your mother', 'gilmore girls'];
+var topics = ["blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "quantico", "vikings", "the last ship", "monk", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
 
 renderButtons();
 
