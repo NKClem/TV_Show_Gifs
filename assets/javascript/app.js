@@ -1,10 +1,11 @@
 //array for buttons
-var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "quantico", "vikings", "the last ship", "monk", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
+var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "stranger things", "parenthood", "the last ship", "the x-files", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
 
 renderButtons();
 
 //call to giphy api
 $('.style-buttons').click(function() {
+	$('#images-dump').empty();
 	var userShow = $(this).attr('data-name');
 	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + userShow + '&api_key=oHeKCwJy4CsvUSGURAcAm8aGNCZiUGEj&limit=10';
 
@@ -15,7 +16,7 @@ $('.style-buttons').click(function() {
 			console.log(response);
 			var results = response.data;
 			for(i = 0; i < results.length; i++) {
-				var displayGifDiv = $("<div class='item'>");
+				var displayGifDiv = $("<div class='image-spacing'>");
 				var gifRating = results[i].rating;
 				var gifRatingString = JSON.stringify(gifRating);
 				var displayGifRating = $('<p>').text('Rating: ' + gifRatingString);

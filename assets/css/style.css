@@ -33,3 +33,7 @@ label {
 	color: white;
 	border-radius: 5px;
 }
+
+.image-spacing {
+	margin: 20px;
+}
