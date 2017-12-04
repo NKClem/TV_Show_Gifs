@@ -4,7 +4,7 @@ var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "ame
 renderButtons();
 
 //call to giphy api
-$('.style-buttons').click(function() {
+function displayGif() {
 	$('#images-dump').empty();
 	var userShow = $(this).attr('data-name');
 	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + userShow + '&api_key=oHeKCwJy4CsvUSGURAcAm8aGNCZiUGEj&limit=10';
@@ -16,24 +16,21 @@ $('.style-buttons').click(function() {
 			console.log(response);
 			var results = response.data;
 			for(i = 0; i < results.length; i++) {
-				var displayGifDiv = $('<div>');
-				
-				var gifRating = results[i].rating;
-				
-				var displayGifRating = $('<p>').text('Rating: ' + gifRating);
-				var displayGif = $('<img>');
-				displayGif.attr('src', results[i].images.fixed_height.url);
-				displayGif.addClass('image-spacing');
-				displayGifDiv.append(displayGifRating);
-            	displayGifDiv.append(displayGif);
-            	$('#images-dump').append(displayGif);
+				var gifDiv = $('<div>');
+				var gifRating = $("<p>").text("Rating: " + results[i].rating);
+				var gifImage = $('<img>');
+				gifImage.attr('src', results[i].images.fixed_height.url);
+				gifImage.addClass('image-spacing');
+				gifDiv.append(gifRating);
+            	gifDiv.append(gifImage);
+            	$('#images-dump').append(gifImage);
 			}
 		});
 
-})
+}
 
 //click function to pause and restart gifs
-$('#')
+//$('#')
 
 
 
@@ -44,6 +41,8 @@ $('#add-show').click(function() {
 	console.log(topics);
 	renderButtons();
 })
+
+$('.style-buttons').click(displayGif);
 
 function renderButtons() {
 	$('#buttons').empty();
@@ -56,9 +55,7 @@ function renderButtons() {
 	})
 }
 
-function setUpGifs() {
-	
-}
+
 
 //$('.style-buttons').click(function(event) {
 //	event.preventDefault();
