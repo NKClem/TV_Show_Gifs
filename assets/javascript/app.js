@@ -1,12 +1,8 @@
 $(document).ready(function() {
 //array for buttons
-var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "stranger things", "parenthood", "the last ship", "the x-files", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
+var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "stranger things", "supernatural", "the last ship", "the x-files", "how i met your mother", "the gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
 
 renderButtons();
-
-$('#add-show').click(function() {
-	
-})
 
 $('.style-buttons').click(displayGif);
 
@@ -18,18 +14,7 @@ $('#add-show').click(function(event) {
 	renderButtons();
 })
 
-$('.gif-image').click(function() {
-	var state = $(this).attr('data-state');
-	var activeUrl = $(this).attr('data-animate');
-    var stillUrl = $(this).attr('data-still');
-    if (state == 'still') {
-    	$(this).attr('src', activeUrl);
-    	$(this).attr('data-state', 'animate');
-    } else {
-    	$(this).attr('src', stillUrl);
-    	$(this).attr('data-state', 'still');
-    }
-})
+
 
 //function to create buttons
 function renderButtons() {
@@ -61,14 +46,27 @@ function displayGif() {
 				var gifDiv = $('<div>');
 				var gifRating = $("<p>").text("Rating: " + results[i].rating);
 				var gifImage = $('<img>');
-				gifImage.attr('src', results[i].images.fixed_height_still.url);
-				gifImage.attr('data-animate', results[i].images.fixed_height.url);
-				gifImage.attr('data-still', results[i].images.fixed_height_still.url);
+				gifImage.attr('src', results[i].images.fixed_width_still.url);
+				gifImage.attr('data-animate', results[i].images.fixed_width.url);
+				gifImage.attr('data-still', results[i].images.fixed_width_still.url);
 				gifImage.addClass('gif-image');
 				gifDiv.addClass('image-spacing');
 				gifDiv.append(gifRating);
             	gifDiv.append(gifImage);
             	$('#images-dump').append(gifDiv);
+            
+            	$('.gif-image').click(function() {
+					var state = $(this).attr('data-state');
+					var activeUrl = $(this).attr('data-animate');
+    				var stillUrl = $(this).attr('data-still');
+    				if (state == 'still') {
+    					$(this).attr('src', activeUrl);
+    					$(this).attr('data-state', 'animate');
+    				} else {
+    					$(this).attr('src', stillUrl);
+    					$(this).attr('data-state', 'still');
+    				}
+				});
 			}
 		});
 
