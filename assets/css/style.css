@@ -9,18 +9,19 @@ body {
 	font-size: 15px;
 }
 
-#wrapper {
-	height: 100%;
-	margin-bottom: -50px;
+.heading {
+	font-family: 'Abril Fatface', cursive;
 }
 
 label {
-	font-size: 18px;
+	font-family: 'Faustina', serif;
+	font-size: 20px;
 }
 
 .row {
 	margin-bottom: 10px;
 }
+
 #new-show {
 	width: 450px;
 }
