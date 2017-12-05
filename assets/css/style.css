@@ -1,7 +1,7 @@
 body {
 	background: url("../images/background.jpg");
 	background-repeat: no-repeat;
-	background-size: 100% auto;
+	background-size: cover;
 	background-color: #c0d6e4;
 	color: white;
 	font-size: 15px;
