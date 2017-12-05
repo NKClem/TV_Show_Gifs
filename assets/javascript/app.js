@@ -5,10 +5,10 @@ var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "30 
 //show original buttons
 renderButtons();
 
-//click function to display gifs, according to button
+//click event to display gifs, according to button
 $(document).on('click', '.style-buttons', displayGifs);
 
-//click function to animate and still gifs
+//click event to animate and still gifs
 $(document).on('click', '.gif-image', function() {
 	var state = $(this).attr('data-state');
 	var animateUrl = $(this).attr('data-animate');
@@ -23,7 +23,7 @@ $(document).on('click', '.gif-image', function() {
 	}
 });
 
-//click function to create new buttons
+//click event to create new buttons
 $('#add-show').on('click', function(event) {
 	event.preventDefault();
 	var newShow = $('#new-show').val().trim();
