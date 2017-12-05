@@ -1,7 +1,49 @@
+$(document).ready(function() {
 //array for buttons
 var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "stranger things", "parenthood", "the last ship", "the x-files", "how i met your mother", "gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
 
 renderButtons();
+
+$('#add-show').click(function() {
+	
+})
+
+$('.style-buttons').click(displayGif);
+
+$('#add-show').click(function(event) {
+	event.preventDefault();
+	var newShow = $('#new-show').val().trim();
+	topics.push(newShow);
+	console.log(topics);
+	renderButtons();
+})
+
+$('.image-spacing').click(function() {
+	var state = $(this).attr('data-state');
+	var activeUrl = $(this).attr('data-animate');
+    var stillUrl = $(this).attr('data-still');
+    if (state == 'still') {
+    	$(this).attr('src', activeUrl);
+    	$(this).attr('data-state', 'animate');
+    } else {
+    	$(this).attr('src', stillUrl);
+    	$(this).attr('data-state', 'still');
+    }
+})
+
+//function to create buttons
+function renderButtons() {
+	$('#buttons').empty();
+	for (var i = 0; i < topics.length; i++) {
+		var newButton = $('<button>');
+		newButton.addClass('style-buttons');
+		newButton.attr('data-name', topics[i]);
+		newButton.text(topics[i]);
+		$('#buttons').append(newButton);
+	}
+}
+
+
 
 //call to giphy api
 function displayGif() {
@@ -15,49 +57,24 @@ function displayGif() {
 	}).done(function(response) {
 			console.log(response);
 			var results = response.data;
-			for(i = 0; i < results.length; i++) {
+			for(var i = 0; i < results.length; i++) {
 				var gifDiv = $('<div>');
 				var gifRating = $("<p>").text("Rating: " + results[i].rating);
 				var gifImage = $('<img>');
 				gifImage.attr('src', results[i].images.fixed_height.url);
-				gifImage.addClass('image-spacing');
+				gifImage.attr('data-animate', results[i].images.fixed_height.url);
+				gifImage.attr('data-still', results[i].images.fixed_height_still.url);
+				gifDiv.addClass('image-spacing');
 				gifDiv.append(gifRating);
             	gifDiv.append(gifImage);
-            	$('#images-dump').append(gifImage);
+            	$('#images-dump').append(gifDiv);
 			}
 		});
 
 }
 
-//click function to pause and restart gifs
-//$('#')
 
-
-
-$('#add-show').click(function() {
-	event.preventDefault();
-	var newShow = $('#new-show').val().trim();
-	topics.push(newShow);
-	console.log(topics);
-	renderButtons();
 })
 
-$('.style-buttons').click(displayGif);
-
-function renderButtons() {
-	$('#buttons').empty();
-	topics.forEach(function(show) {
-		var newButton = $('<button>');
-		newButton.addClass('style-buttons');
-		newButton.attr('data-name', show);
-		newButton.text(show);
-		$('#buttons').append(newButton);
-	})
-}
 
 
-
-//$('.style-buttons').click(function(event) {
-//	event.preventDefault();
-//	var show = 
-//})

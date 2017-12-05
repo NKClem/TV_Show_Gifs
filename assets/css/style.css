@@ -35,5 +35,6 @@ label {
 }
 
 .image-spacing {
+	float: left;
 	margin: 10px;
 }
