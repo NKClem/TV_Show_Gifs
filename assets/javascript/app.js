@@ -2,78 +2,72 @@ $(document).ready(function() {
 //array for buttons
 var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "stranger things", "supernatural", "the last ship", "the x-files", "how i met your mother", "the gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
 
+//call functions
 renderButtons();
 
-$('.style-buttons').click(displayGif);
+$(document).on('click', '.style-buttons', displayGifs);
 
-$('#add-show').click(function(event) {
+//$(document)on('click', '.gif-image', function() {
+//	var state = $(this).attr('data-state');
+//	var animateUrl = $(this).attr('data-animate');
+//    var stillUrl = $(this).attr('data-still');
+
+//	if (state === 'still') {
+//		$(this).attr('src', animateUrl);
+//		$(this).attr('data-state', 'animate');
+//	} else {
+//		$(this).attr('src', stillUrl);
+//		$(this).attr('data-state', 'still');
+//	}
+//});
+$('#add-show').on('click', function(event) {
 	event.preventDefault();
 	var newShow = $('#new-show').val().trim();
 	topics.push(newShow);
-	console.log(topics);
 	renderButtons();
 })
 
-
-
-//function to create buttons
+//function to create buttons from topics array
 function renderButtons() {
 	$('#buttons').empty();
 	for (var i = 0; i < topics.length; i++) {
-		var newButton = $('<button>');
-		newButton.addClass('style-buttons');
-		newButton.attr('data-name', topics[i]);
-		newButton.text(topics[i]);
-		$('#buttons').append(newButton);
+		var button = $('<button class="style-buttons">');
+		button.attr('data-name', topics[i]);
+		button.text(topics[i]);
+		$('#buttons').append(button);
 	}
+
 }
 
-
-
-//call to giphy api
-function displayGif() {
-	$('#images-dump').empty();
-	var userShow = $(this).attr('data-name');
-	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + userShow + '&api_key=oHeKCwJy4CsvUSGURAcAm8aGNCZiUGEj&limit=10';
+//function for ajax call to giphy api
+function displayGifs() {
+	
+	var show = $(this).attr('data-name');
+	var queryURL = 'https://api.giphy.com/v1/gifs/search?q=' + show + '&api_key=oHeKCwJy4CsvUSGURAcAm8aGNCZiUGEj&limit=10';
 
 	$.ajax({
 		url: queryURL,
 		method: 'GET'
 	}).done(function(response) {
-			console.log(response);
-			var results = response.data;
-			for(var i = 0; i < results.length; i++) {
-				var gifDiv = $('<div>');
-				var gifRating = $("<p>").text("Rating: " + results[i].rating);
-				var gifImage = $('<img>');
-				gifImage.attr('src', results[i].images.fixed_width_still.url);
-				gifImage.attr('data-animate', results[i].images.fixed_width.url);
-				gifImage.attr('data-still', results[i].images.fixed_width_still.url);
-				gifImage.addClass('gif-image');
-				gifDiv.addClass('image-spacing');
-				gifDiv.append(gifRating);
-            	gifDiv.append(gifImage);
-            	$('#images-dump').append(gifDiv);
-            
-            	$('.gif-image').click(function() {
-					var state = $(this).attr('data-state');
-					var activeUrl = $(this).attr('data-animate');
-    				var stillUrl = $(this).attr('data-still');
-    				if (state == 'still') {
-    					$(this).attr('src', activeUrl);
-    					$(this).attr('data-state', 'animate');
-    				} else {
-    					$(this).attr('src', stillUrl);
-    					$(this).attr('data-state', 'still');
-    				}
-				});
-			}
-		});
-
+		console.log(response);
+		$('#images-dump').empty();
+		var results = response.data;
+		for (var i = 0; i < results.length; i++) {
+			var gifDiv = $('<div class="image-spacing">');
+			var rating = results[i].rating;
+			var displayRating = $('<p>').text('Rating: ' + rating);
+				gifDiv.append(displayRating);
+			var gifImage = $('<img class="gif-image">');
+				gifImage.attr('src', results[i].images.fixed_height_still.url);
+				gifImage.attr('data-animate', results[i].images.fixed_height.url);
+				gifImage.attr('data-still', results[i].images.fixed_height_still.url);
+				gifImage.attr('data-state', 'still');
+				gifDiv.append(gifImage);
+			$('#images-dump').append(gifDiv);
+		} 
+	});
 }
 
 
-})
 
-
-
+});
