@@ -2,11 +2,13 @@ $(document).ready(function() {
 //array for buttons
 var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "30 rock", "3rd rock from the sun", "the voice", "the gifted", "designated survivor", "stranger things", "supernatural", "the last ship", "the x-files", "how i met your mother", "the gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "bob's burgers"];
 
-//call functions
+//show original buttons
 renderButtons();
 
+//click function to display gifs, according to button
 $(document).on('click', '.style-buttons', displayGifs);
 
+//click function to animate and still gifs
 $(document).on('click', '.gif-image', function() {
 	var state = $(this).attr('data-state');
 	var animateUrl = $(this).attr('data-animate');
@@ -21,6 +23,7 @@ $(document).on('click', '.gif-image', function() {
 	}
 });
 
+//click function to create new buttons
 $('#add-show').on('click', function(event) {
 	event.preventDefault();
 	var newShow = $('#new-show').val().trim();
