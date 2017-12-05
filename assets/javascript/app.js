@@ -18,7 +18,7 @@ $('#add-show').click(function(event) {
 	renderButtons();
 })
 
-$('.image-spacing').click(function() {
+$('.gif-image').click(function() {
 	var state = $(this).attr('data-state');
 	var activeUrl = $(this).attr('data-animate');
     var stillUrl = $(this).attr('data-still');
@@ -61,9 +61,10 @@ function displayGif() {
 				var gifDiv = $('<div>');
 				var gifRating = $("<p>").text("Rating: " + results[i].rating);
 				var gifImage = $('<img>');
-				gifImage.attr('src', results[i].images.fixed_height.url);
+				gifImage.attr('src', results[i].images.fixed_height_still.url);
 				gifImage.attr('data-animate', results[i].images.fixed_height.url);
 				gifImage.attr('data-still', results[i].images.fixed_height_still.url);
+				gifImage.addClass('gif-image');
 				gifDiv.addClass('image-spacing');
 				gifDiv.append(gifRating);
             	gifDiv.append(gifImage);
