@@ -1,31 +1,32 @@
 $(document).ready(function() {
 //array for buttons
-var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "american housewife", "will & grace", "the voice", "the gifted", "designated survivor", "stranger things", "supernatural", "the last ship", "the x-files", "how i met your mother", "the gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "grey's anatomy"];
+var topics = ["dr. who", "blackish", "game of thrones", "the walking dead", "30 rock", "3rd rock from the sun", "the voice", "the gifted", "designated survivor", "stranger things", "supernatural", "the last ship", "the x-files", "how i met your mother", "the gilmore girls", "saturday night live", "fresh off the boat", "the big bang theory", "young sheldon", "bob's burgers"];
 
 //call functions
 renderButtons();
 
 $(document).on('click', '.style-buttons', displayGifs);
 
-//$(document)on('click', '.gif-image', function() {
-//	var state = $(this).attr('data-state');
-//	var animateUrl = $(this).attr('data-animate');
-//    var stillUrl = $(this).attr('data-still');
+$(document).on('click', '.gif-image', function() {
+	var state = $(this).attr('data-state');
+	var animateUrl = $(this).attr('data-animate');
+    var stillUrl = $(this).attr('data-still');
 
-//	if (state === 'still') {
-//		$(this).attr('src', animateUrl);
-//		$(this).attr('data-state', 'animate');
-//	} else {
-//		$(this).attr('src', stillUrl);
-//		$(this).attr('data-state', 'still');
-//	}
-//});
+	if (state === 'still') {
+		$(this).attr('src', animateUrl);
+		$(this).attr('data-state', 'animate');
+	} else {
+		$(this).attr('src', stillUrl);
+		$(this).attr('data-state', 'still');
+	}
+});
+
 $('#add-show').on('click', function(event) {
 	event.preventDefault();
 	var newShow = $('#new-show').val().trim();
 	topics.push(newShow);
 	renderButtons();
-})
+});
 
 //function to create buttons from topics array
 function renderButtons() {
