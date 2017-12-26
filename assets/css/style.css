@@ -18,7 +18,7 @@ label {
 }
 
 #new-show {
-	width: 450px;
+	width: 100%;
 }
 
 .style-buttons {
@@ -40,15 +40,21 @@ label {
 	margin: 10px;
 }
 
-.giphy-logo {
+#giphy-logo {
 	margin-top: 30px;
+	float: left;
+}
+
+#copyright {
+	float: right;
+	padding-top: 50px;
 }
 
 .footer {
-	position: absolute;
+	overflow: auto;
+	position: fixed;
+	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 30px;
-	line-height: 30px;
-	text-align: right;
+	color: white;
 }
